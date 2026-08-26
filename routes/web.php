@@ -73,3 +73,12 @@ Route::get('/laporan', function () {
 Route::get('/pengaturan', function () {
     return view('pengaturan.index');
 });
+
+use Illuminate\Support\Facades\Session;
+
+Route::get('/lang/{locale}', function ($locale) {
+    if (in_array($locale, ['id', 'en'])) {
+        Session::put('locale', $locale);
+    }
+    return redirect()->back();
+})->name('lang.switch');

@@ -1,935 +1,313 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kimia Farma Payroll Dashboard</title>
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            kf: {
-              navy: '#003B73',
-              blue: '#005BBB',
-              cyan: '#00A8CC',
-              light: '#F5F9FD',
-              green: '#10B981',
-              orange: '#F59E0B',
-              red: '#EF4444'
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keunggulan Utama - Payroll & HRIS Kimia Farma</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        kf: {
+                            navy: '#003B73',
+                            blue: '#005BBB',
+                            cyan: '#00A8CC',
+                            dark: '#0A2540',
+                            bg: '#F8FAFC'
+                        }
+                    }
+                }
             }
-          },
-          boxShadow: {
-            soft: '0 8px 30px rgba(15, 53, 87, .06)'
-          }
         }
-      }
-    }
-  </script>
+    </script>
+    
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        html, body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #FFFFFF; 
+            top: 0 !important; 
+            position: static !important;
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+        }
 
-  <style>
-    * {
-      scrollbar-width: thin;
-      scrollbar-color: #cbd5e1 transparent;
-    }
+        #google_translate_element,
+        .goog-te-gadget,
+        .goog-te-gadget-simple,
+        .goog-te-banner-frame,
+        .goog-te-balloon-frame,
+        .skiptranslate,
+        iframe.goog-te-banner-frame,
+        iframe[id^=":"] {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            height: 0 !important;
+            width: 0 !important;
+            max-height: 0 !important;
+            overflow: hidden !important;
+            pointer-events: none !important;
+            position: absolute !important;
+            left: -9999px !important;
+            top: -9999px !important;
+        }
 
-    body {
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", sans-serif;
-      background: #f7faff;
-      color: #0f2947;
-    }
+        #goog-gt-tt,
+        .goog-gt-tt-tip,
+        [class*="VIpgJd"] {
+            display: none !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
 
-    .sidebar-gradient {
-      background:
-        radial-gradient(circle at 0% 0%, rgba(0,168,204,.18), transparent 32%),
-        linear-gradient(180deg, #003b73 0%, #052b55 100%);
-    }
-
-    .nav-active {
-      background: linear-gradient(90deg, rgba(0,168,204,.22), rgba(0,168,204,.08));
-      border-left: 3px solid #00a8cc;
-      color: white;
-    }
-
-    .chart-card {
-      min-height: 370px;
-    }
-
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      display: inline-block;
-    }
-
-    .glass {
-      background: rgba(255,255,255,.78);
-      backdrop-filter: blur(12px);
-    }
-  </style>
+        .goog-text-highlight {
+            background-color: transparent !important;
+            box-shadow: none !important;
+        }
+    </style>
 </head>
+<body class="bg-white text-slate-800 antialiased">
 
-<body>
+    <!-- Element Penyimpan API -->
+    <div id="google_translate_element" style="display:none;"></div>
 
-<div class="min-h-screen flex">
-
-  <!-- SIDEBAR -->
-  <aside class="sidebar-gradient w-[260px] fixed inset-y-0 left-0 z-40 text-white flex flex-col">
-
-    <!-- Logo -->
-    <div class="h-[82px] px-6 flex items-center border-b border-white/10">
-      <div>
-        <div class="flex items-center gap-2">
-          <div class="relative">
-            <div class="absolute -top-1 left-1 w-10 h-2 rounded-full bg-orange-400 rotate-[-8deg]"></div>
-            <span class="text-[22px] font-black italic tracking-tight">
-              kimia farma
-            </span>
-          </div>
-        </div>
-        <p class="text-[10px] text-blue-200 mt-0.5 ml-1">
-          Payroll & HRIS
-        </p>
-      </div>
-    </div>
-
-    <!-- User -->
-    <div class="px-5 py-5 border-b border-white/10">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center font-bold">
-          AR
+    <!-- Header Navbar Sticky Utama -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
+        
+        <!-- Garis Selaput Orange & Biru Kimia Farma -->
+        <div class="w-full h-1.5 flex">
+            <div class="w-1/2 bg-orange-500"></div>
+            <div class="w-1/2 bg-kf-blue"></div>
         </div>
 
-        <div class="min-w-0">
-          <p class="text-sm font-semibold truncate">Andi Rahmat</p>
-          <p class="text-xs text-blue-200 truncate">Payroll Administrator</p>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2">
+            
+            <!-- Baris Atas: Search & Language Switcher -->
+            <div class="flex justify-end items-center gap-4 text-xs mb-1">
+                <div class="relative w-48 sm:w-64">
+                    <input type="text" placeholder="Search" class="w-full pl-4 pr-9 py-1 rounded-full border border-slate-300 focus:outline-none focus:border-kf-blue text-xs transition">
+                    <i class="fa-solid fa-magnifying-glass absolute right-3 top-2 text-slate-400"></i>
+                </div>
+                
+                <div class="flex items-center text-xs font-semibold text-slate-600 gap-1 notranslate">
+                    <button onclick="changeLanguage('id')" id="btn-id" class="hover:text-kf-blue transition text-kf-navy font-bold">IND</button>
+                    <span class="text-slate-300">|</span>
+                    <button onclick="changeLanguage('en')" id="btn-en" class="hover:text-kf-blue transition">ENG</button>
+                </div>
+            </div>
+
+            <!-- Baris Utama: Logo, Menu Navigasi, & Tombol Aksi/Mobile -->
+            <div class="flex items-center justify-between gap-4">
+                <div class="flex items-center gap-3 shrink-0">
+                    <img src="{{ asset('images/logo-kimia-farma.jpg') }}" alt="Logo Kimia Farma" class="h-16 sm:h-20 w-auto object-contain">
+                    <span class="text-xs font-semibold px-2.5 py-1 bg-blue-50 text-kf-navy rounded-md border border-blue-100 hidden sm:inline-block notranslate">Payroll & HRIS</span>
+                </div>
+
+                <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-semibold uppercase tracking-wide">
+                  <a href="{{ url('/') }}" class="nav-link hover:text-kf-blue transition text-slate-700">Beranda</a>
+                  <a href="{{ url('/fitur') }}" class="nav-link hover:text-kf-blue transition text-slate-700">Fitur</a>
+                  <a href="{{ url('/modul') }}" class="nav-link hover:text-kf-blue transition text-slate-700">Modul</a>
+                  <a href="{{ url('/keunggulan') }}" class="nav-link text-kf-blue border-b-2 border-kf-blue pb-1">Keunggulan</a>
+                  <a href="{{ url('/tentang') }}" class="nav-link hover:text-kf-blue transition text-slate-700">Tentang</a>
+                  <a href="{{ url('/kontak') }}" class="nav-link hover:text-kf-blue transition text-slate-700">Kontak</a>
+                </nav>
+
+                <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+                   <!-- Tombol Demo Sistem -->
+                   <a href="{{ url('/dashboard') }}" class="hidden sm:inline-block px-4 py-2 text-xs sm:text-sm font-semibold text-kf-navy bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 transition">
+                   Demo Sistem
+                   </a>
+
+                   <!-- Tombol Login Payroll -->
+                   <a href="{{ url('/dashboard') }}" class="px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold text-white bg-kf-navy hover:bg-slate-800 rounded-lg shadow-sm transition flex items-center gap-1.5">
+                   <i class="fa-solid fa-lock text-xs text-kf-cyan"></i> 
+                   <span>Login Payroll</span>
+                   </a>
+                     
+                   <!-- Tombol Garis Tiga (Mobile Menu Button) -->
+                   <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden text-slate-700 hover:text-kf-blue focus:outline-none p-2 rounded-lg border border-slate-200">
+                       <i class="fa-solid fa-bars text-lg"></i>
+                   </button>
+                </div>
+            </div>
+
+            <!-- DROPDOWN MENU TAMPILAN HP -->
+            <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 mt-3 pt-3 pb-2 space-y-2 text-sm font-semibold uppercase text-slate-700">
+              <a href="{{ url('/') }}" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-slate-50 transition">Beranda</a>
+              <a href="{{ url('/fitur') }}" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-slate-50 transition">Fitur</a>
+              <a href="{{ url('/modul') }}" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-slate-50 transition">Modul</a>
+              <a href="{{ url('/keunggulan') }}" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg bg-blue-50 text-kf-navy font-bold">Keunggulan</a>
+              <a href="{{ url('/tentang') }}" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-slate-50 transition">Tentang</a>
+              <a href="{{ url('/kontak') }}" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-slate-50 transition">Kontak</a>
+            </div>
+
         </div>
-
-        <button class="ml-auto text-blue-200">
-          <i data-lucide="chevron-down" class="w-4"></i>
-        </button>
-      </div>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="flex-1 px-3 py-5 space-y-1 overflow-y-auto">
-
-      <p class="text-[10px] uppercase tracking-widest text-blue-300 font-bold px-3 mb-3">
-        Main Menu
-      </p>
-
-      <a href="#" class="nav-active flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium">
-        <i data-lucide="layout-dashboard" class="w-[18px]"></i>
-        Dashboard
-      </a>
-
-      <a href="#" class="flex items-center gap-3 px-3 py-3 rounded-lg text-sm text-blue-100 hover:bg-white/10 transition">
-        <i data-lucide="users" class="w-[18px]"></i>
-        Data Karyawan
-      </a>
-
-      <a href="#" class="flex items-center gap-3 px-3 py-3 rounded-lg text-sm text-blue-100 hover:bg-white/10 transition">
-        <i data-lucide="calculator" class="w-[18px]"></i>
-        Komponen Gaji
-      </a>
-
-      <a href="#" class="flex items-center justify-between px-3 py-3 rounded-lg text-sm text-blue-100 hover:bg-white/10 transition">
-        <span class="flex items-center gap-3">
-          <i data-lucide="wallet-cards" class="w-[18px]"></i>
-          Proses Payroll
-        </span>
-        <span class="bg-orange-400 text-white text-[10px] px-2 py-0.5 rounded-full">
-          3
-        </span>
-      </a>
-
-      <a href="#" class="flex items-center gap-3 px-3 py-3 rounded-lg text-sm text-blue-100 hover:bg-white/10 transition">
-        <i data-lucide="file-bar-chart" class="w-[18px]"></i>
-        Laporan & Analitik
-      </a>
-
-      <a href="#" class="flex items-center gap-3 px-3 py-3 rounded-lg text-sm text-blue-100 hover:bg-white/10 transition">
-        <i data-lucide="file-text" class="w-[18px]"></i>
-        Slip Gaji
-      </a>
-
-      <p class="text-[10px] uppercase tracking-widest text-blue-300 font-bold px-3 mt-7 mb-3">
-        System
-      </p>
-
-      <a href="#" class="flex items-center gap-3 px-3 py-3 rounded-lg text-sm text-blue-100 hover:bg-white/10 transition">
-        <i data-lucide="shield-check" class="w-[18px]"></i>
-        Keamanan
-      </a>
-
-      <a href="#" class="flex items-center gap-3 px-3 py-3 rounded-lg text-sm text-blue-100 hover:bg-white/10 transition">
-        <i data-lucide="settings" class="w-[18px]"></i>
-        Pengaturan
-      </a>
-
-    </nav>
-
-    <!-- Server -->
-    <div class="p-4">
-      <div class="rounded-xl bg-white/10 border border-white/10 p-3">
-        <div class="flex items-center gap-2">
-          <span class="status-dot bg-emerald-400"></span>
-          <span class="text-xs font-medium">All Systems Operational</span>
-        </div>
-
-        <p class="text-[10px] text-blue-200 mt-2">
-          Payroll System v2.8.1
-        </p>
-      </div>
-    </div>
-
-  </aside>
-
-
-  <!-- MAIN -->
-  <main class="ml-[260px] flex-1 min-w-0">
-
-    <!-- TOPBAR -->
-    <header class="h-[82px] bg-white border-b border-slate-200 sticky top-0 z-30 px-8 flex items-center justify-between">
-
-      <div class="flex items-center gap-4">
-
-        <!-- Search -->
-        <div class="relative w-[350px]">
-          <i data-lucide="search"
-             class="absolute left-3 top-1/2 -translate-y-1/2 w-4 text-slate-400"></i>
-
-          <input
-            type="text"
-            placeholder="Cari NIP, nama karyawan, atau periode..."
-            class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-400"
-          />
-
-          <span class="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-slate-400 border border-slate-200 rounded px-1.5 py-0.5">
-            Ctrl K
-          </span>
-        </div>
-
-      </div>
-
-      <div class="flex items-center gap-4">
-
-        <!-- Period -->
-        <button class="flex items-center gap-2 border border-slate-200 bg-white rounded-xl px-3 py-2.5 text-sm">
-          <i data-lucide="calendar-days" class="w-4 text-kf-blue"></i>
-          <span>Agustus 2026</span>
-          <i data-lucide="chevron-down" class="w-4 text-slate-400"></i>
-        </button>
-
-        <!-- Unit -->
-        <button class="hidden xl:flex items-center gap-2 border border-slate-200 rounded-xl px-3 py-2.5 text-sm">
-          <i data-lucide="building-2" class="w-4 text-kf-blue"></i>
-          <span>Kimia Farma Group</span>
-          <i data-lucide="chevron-down" class="w-4 text-slate-400"></i>
-        </button>
-
-        <!-- Notification -->
-        <button class="relative w-10 h-10 rounded-xl hover:bg-slate-50 flex items-center justify-center">
-          <i data-lucide="bell" class="w-[19px] text-slate-600"></i>
-          <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
-        </button>
-
-        <div class="h-8 w-px bg-slate-200"></div>
-
-        <div class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center text-white text-xs font-bold">
-          AR
-        </div>
-
-      </div>
     </header>
 
-
-    <!-- CONTENT -->
-    <div class="p-8">
-
-      <!-- Header -->
-      <section class="flex items-start justify-between mb-7">
-
-        <div>
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-xs font-semibold text-kf-cyan uppercase tracking-wider">
-              Payroll Overview
-            </span>
-
-            <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 text-[10px] font-bold">
-              Live
-            </span>
-          </div>
-
-          <h1 class="text-[28px] font-bold text-kf-navy">
-            Selamat datang, Andi 👋
-          </h1>
-
-          <p class="text-sm text-slate-500 mt-1">
-            Berikut ringkasan kondisi payroll Kimia Farma Group untuk periode Agustus 2026.
-          </p>
+    <!-- Konten Halaman Keunggulan -->
+    <main class="max-w-6xl mx-auto py-12 px-6">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-extrabold text-slate-900">Keunggulan Utama Sistem Payroll & HRIS</h2>
+            <p class="text-slate-500 mt-2">Solusi modern pengelolaan SDM yang handal, cepat, dan terpercaya untuk Kimia Farma Group.</p>
         </div>
 
-        <button class="bg-kf-blue hover:bg-blue-700 text-white rounded-xl px-4 py-2.5 text-sm font-semibold flex items-center gap-2 shadow-lg shadow-blue-900/10">
-          <i data-lucide="play" class="w-4"></i>
-          Proses Payroll
-        </button>
-
-      </section>
-
-
-      <!-- KPI -->
-      <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 mb-6">
-
-        <!-- Card -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-soft">
-          <div class="flex items-start justify-between">
-            <div class="w-11 h-11 rounded-xl bg-blue-50 flex items-center justify-center">
-              <i data-lucide="wallet" class="w-5 text-kf-blue"></i>
+        <div class="grid md:grid-cols-3 gap-6">
+            <!-- Card 1: Keakuratan -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
+                <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-kf-navy mb-4 font-bold text-lg">
+                    <i class="fa-solid fa-bullseye"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-2 text-slate-900">Akurasi & Presisi Tinggi</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">Mengeliminasi kesalahan perhitungan manual dengan algoritma otomatis yang menjamin akurasi nominal gaji dan pemotongan kewajiban karyawan.</p>
             </div>
 
-            <span class="flex items-center gap-1 text-xs font-semibold text-emerald-600">
-              <i data-lucide="trending-up" class="w-3.5"></i>
-              4.8%
-            </span>
-          </div>
+            <!-- Card 2: Keamanan Data -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
+                <div class="w-12 h-12 bg-cyan-100 rounded-xl flex items-center justify-center text-kf-cyan mb-4 font-bold text-lg">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-2 text-slate-900">Keamanan Data Terjamin</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">Dilengkapi dengan enkripsi tingkat tinggi dan proteksi hak akses untuk menjaga kerahasiaan data finansial serta data pribadi seluruh pegawai.</p>
+            </div>
 
-          <p class="text-xs text-slate-500 mt-5">Total Pengeluaran Gaji</p>
+            <!-- Card 3: Efisiensi Waktu -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
+                <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600 mb-4 font-bold text-lg">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-2 text-slate-900">Pemrosesan Cepat</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">Memangkas durasi pemrosesan siklus penggajian bulanan dari hitungan hari menjadi hanya beberapa menit dengan sistem yang terintegrasi penuh.</p>
+            </div>
 
-          <h2 class="text-[23px] font-bold text-kf-navy mt-1">
-            Rp 28.745.890.000
-          </h2>
+            <!-- Card 4: Kemudahan Akses Self-Service -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
+                <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center text-amber-600 mb-4 font-bold text-lg">
+                    <i class="fa-solid fa-user-check"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-2 text-slate-900">Layanan Mandiri Pegawai</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">Memberikan kemudahan bagi pegawai untuk mengunduh slip gaji, mengajukan klaim, dan memperbarui informasi pribadi secara independen.</p>
+            </div>
 
-          <p class="text-[11px] text-slate-400 mt-1">
-            dibandingkan Rp 27,4 M bulan lalu
-          </p>
+            <!-- Card 5: Kepatuhan Regulasi -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
+                <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-purple-600 mb-4 font-bold text-lg">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-2 text-slate-900">Selaras Regulasi Pemerintah</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">Selalu terbarui secara otomatis mengikuti aturan perpajakan nasional (PPh 21 TER) dan kebijakan ketenagakerjaan BPJS yang berlaku.</p>
+            </div>
+
+            <!-- Card 6: Integrasi Multi-Cabang -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
+                <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center text-indigo-600 mb-4 font-bold text-lg">
+                    <i class="fa-solid fa-network-wired"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-2 text-slate-900">Integrasi Multi-Unit Bisnis</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">Dapat dihubungkan secara terpusat untuk memfasilitasi kebutuhan HR & Payroll di seluruh anak perusahaan dan entitas Kimia Farma Group.</p>
+            </div>
         </div>
+    </main>
 
-
-        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-soft">
-          <div class="flex items-start justify-between">
-            <div class="w-11 h-11 rounded-xl bg-emerald-50 flex items-center justify-center">
-              <i data-lucide="users" class="w-5 text-emerald-600"></i>
+    <!-- Footer -->
+    <footer id="kontak" class="bg-kf-dark text-slate-300 py-12 text-sm">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-5 gap-8">
+            <div class="col-span-2 space-y-4">
+                <div class="flex items-center gap-2">
+                    <img src="{{ asset('images/logo-kimia-farma-kecil.jpg') }}" alt="Logo Kimia Farma" class="h-12 w-auto object-contain rounded">
+                </div>
+                
+                <p class="text-xs text-slate-300 leading-relaxed max-w-sm">
+                    Sistem penggajian terintegrasi untuk mendukung pengelolaan SDM dan payroll di seluruh unit bisnis Kimia Farma Group.
+                </p>
+                <div class="flex items-center gap-3 text-white pt-1">
+                    <a href="#" class="w-8 h-8 rounded-full border border-slate-500/50 flex items-center justify-center text-xs hover:border-white transition"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full border border-slate-500/50 flex items-center justify-center text-xs hover:border-white transition"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full border border-slate-500/50 flex items-center justify-center text-xs hover:border-white transition"><i class="fa-brands fa-youtube"></i></a>
+                </div>
             </div>
-
-            <span class="px-2 py-1 rounded-lg bg-emerald-50 text-emerald-600 text-[10px] font-bold">
-              94.95%
-            </span>
-          </div>
-
-          <p class="text-xs text-slate-500 mt-5">Karyawan Terbayar</p>
-
-          <h2 class="text-[23px] font-bold text-kf-navy mt-1">
-            3,248 <span class="text-sm font-normal text-slate-400">/ 3,421</span>
-          </h2>
-
-          <div class="mt-3 h-1.5 bg-slate-100 rounded-full overflow-hidden">
-            <div class="h-full bg-emerald-500 rounded-full" style="width:94.95%"></div>
-          </div>
-        </div>
-
-
-        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-soft">
-          <div class="flex items-start justify-between">
-            <div class="w-11 h-11 rounded-xl bg-purple-50 flex items-center justify-center">
-              <i data-lucide="receipt" class="w-5 text-purple-600"></i>
-            </div>
-
-            <span class="flex items-center gap-1 text-xs font-semibold text-emerald-600">
-              <i data-lucide="trending-down" class="w-3.5"></i>
-              4.1%
-            </span>
-          </div>
-
-          <p class="text-xs text-slate-500 mt-5">Total Potongan</p>
-
-          <h2 class="text-[23px] font-bold text-kf-navy mt-1">
-            Rp 6.128.450.000
-          </h2>
-
-          <p class="text-[11px] text-slate-400 mt-1">
-            PPh 21, BPJS & potongan lainnya
-          </p>
-        </div>
-
-
-        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-soft">
-          <div class="flex items-start justify-between">
-            <div class="w-11 h-11 rounded-xl bg-orange-50 flex items-center justify-center">
-              <i data-lucide="clock-3" class="w-5 text-orange-500"></i>
-            </div>
-
-            <span class="px-2 py-1 rounded-lg bg-orange-50 text-orange-600 text-[10px] font-bold">
-              Perlu Review
-            </span>
-          </div>
-
-          <p class="text-xs text-slate-500 mt-5">Menunggu Approval</p>
-
-          <h2 class="text-[23px] font-bold text-kf-navy mt-1">
-            173
-          </h2>
-
-          <p class="text-[11px] text-slate-400 mt-1">
-            transaksi membutuhkan tindakan
-          </p>
-        </div>
-
-      </section>
-
-
-      <!-- CHART ROW -->
-      <section class="grid grid-cols-1 xl:grid-cols-3 gap-5 mb-6">
-
-        <!-- Payroll Trend -->
-        <div class="xl:col-span-2 bg-white border border-slate-200 rounded-2xl p-6 shadow-soft chart-card">
-
-          <div class="flex items-start justify-between">
-            <div>
-              <h3 class="font-bold text-kf-navy">Tren Pengeluaran Gaji</h3>
-              <p class="text-xs text-slate-400 mt-1">
-                Total payroll 12 bulan terakhir
-              </p>
-            </div>
-
-            <button class="flex items-center gap-2 text-xs border border-slate-200 rounded-lg px-3 py-2">
-              12 Bulan
-              <i data-lucide="chevron-down" class="w-3.5"></i>
-            </button>
-          </div>
-
-          <div class="mt-6 h-[270px]">
-            <canvas id="payrollChart"></canvas>
-          </div>
-
-        </div>
-
-
-        <!-- Breakdown -->
-        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-soft chart-card">
-
-          <div>
-            <h3 class="font-bold text-kf-navy">Komponen Gaji</h3>
-            <p class="text-xs text-slate-400 mt-1">
-              Breakdown payroll bulan ini
-            </p>
-          </div>
-
-          <div class="h-[210px] mt-2">
-            <canvas id="donutChart"></canvas>
-          </div>
-
-          <div class="grid grid-cols-2 gap-y-3 mt-2">
-
-            <div class="flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
-              <span class="text-xs text-slate-500">Gaji Pokok</span>
-              <b class="text-xs ml-auto">54.2%</b>
-            </div>
-
-            <div class="flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-cyan-500"></span>
-              <span class="text-xs text-slate-500">Tunjangan</span>
-              <b class="text-xs ml-auto">22.7%</b>
-            </div>
-
-            <div class="flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-orange-500"></span>
-              <span class="text-xs text-slate-500">Overtime</span>
-              <b class="text-xs ml-auto">11.3%</b>
-            </div>
-
-            <div class="flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-purple-500"></span>
-              <span class="text-xs text-slate-500">Bonus</span>
-              <b class="text-xs ml-auto">7.8%</b>
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- LOWER SECTION -->
-      <section class="grid grid-cols-1 xl:grid-cols-3 gap-5">
-
-        <!-- Employee Payroll Table -->
-        <div class="xl:col-span-2 bg-white border border-slate-200 rounded-2xl shadow-soft overflow-hidden">
-
-          <div class="p-6 border-b border-slate-100 flex items-center justify-between">
 
             <div>
-              <h3 class="font-bold text-kf-navy">
-                Status Payroll Karyawan
-              </h3>
-
-              <p class="text-xs text-slate-400 mt-1">
-                Daftar proses payroll periode Agustus 2026
-              </p>
+                <h5 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">PRODUK</h5>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="{{ url('/fitur') }}" class="hover:text-white transition">Fitur</a></li>
+                    <li><a href="{{ url('/modul') }}" class="hover:text-white transition">Modul</a></li>
+                    <li><a href="{{ url('/keunggulan') }}" class="hover:text-white transition">Keunggulan</a></li>
+                    <li><a href="#" class="hover:text-white transition">Keamanan</a></li>
+                    <li><a href="#" class="hover:text-white transition">Integrasi</a></li>
+                </ul>
             </div>
 
-            <button class="text-xs text-kf-blue font-semibold flex items-center gap-1">
-              Lihat Semua
-              <i data-lucide="arrow-right" class="w-3.5"></i>
-            </button>
-
-          </div>
-
-
-          <!-- Filter -->
-          <div class="px-6 py-4 bg-slate-50 border-b border-slate-100 flex gap-2">
-
-            <button class="bg-kf-blue text-white text-xs px-3 py-2 rounded-lg font-medium">
-              Semua
-            </button>
-
-            <button class="bg-white border border-slate-200 text-slate-500 text-xs px-3 py-2 rounded-lg">
-              Paid
-            </button>
-
-            <button class="bg-white border border-slate-200 text-slate-500 text-xs px-3 py-2 rounded-lg">
-              Pending
-            </button>
-
-            <button class="bg-white border border-slate-200 text-slate-500 text-xs px-3 py-2 rounded-lg">
-              Review
-            </button>
-
-          </div>
-
-
-          <div class="overflow-x-auto">
-
-            <table class="w-full text-sm">
-
-              <thead>
-                <tr class="text-left text-[11px] uppercase tracking-wide text-slate-400 border-b border-slate-100">
-                  <th class="px-6 py-4">Karyawan</th>
-                  <th class="px-4 py-4">Unit</th>
-                  <th class="px-4 py-4">Net Pay</th>
-                  <th class="px-4 py-4">Status</th>
-                </tr>
-              </thead>
-
-              <tbody>
-
-                <tr class="border-b border-slate-100 hover:bg-slate-50">
-                  <td class="px-6 py-4">
-                    <div class="flex items-center gap-3">
-                      <div class="w-9 h-9 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-xs font-bold">
-                        BS
-                      </div>
-                      <div>
-                        <p class="text-xs font-semibold text-kf-navy">
-                          Budi Santoso
-                        </p>
-                        <p class="text-[10px] text-slate-400">
-                          KF-001238 • Manager Finance
-                        </p>
-                      </div>
-                    </div>
-                  </td>
-
-                  <td class="px-4 py-4 text-xs text-slate-500">
-                    Head Office
-                  </td>
-
-                  <td class="px-4 py-4">
-                    <p class="text-xs font-semibold text-kf-navy">
-                      Rp 18.450.000
-                    </p>
-                  </td>
-
-                  <td class="px-4 py-4">
-                    <span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-600 text-[10px] font-bold">
-                      Paid
-                    </span>
-                  </td>
-                </tr>
-
-
-                <tr class="border-b border-slate-100 hover:bg-slate-50">
-                  <td class="px-6 py-4">
-                    <div class="flex items-center gap-3">
-                      <div class="w-9 h-9 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center text-xs font-bold">
-                        DP
-                      </div>
-                      <div>
-                        <p class="text-xs font-semibold text-kf-navy">
-                          Dewi Pratiwi
-                        </p>
-                        <p class="text-[10px] text-slate-400">
-                          KF-002981 • Senior Pharmacist
-                        </p>
-                      </div>
-                    </div>
-                  </td>
-
-                  <td class="px-4 py-4 text-xs text-slate-500">
-                    Apotek
-                  </td>
-
-                  <td class="px-4 py-4">
-                    <p class="text-xs font-semibold text-kf-navy">
-                      Rp 11.820.500
-                    </p>
-                  </td>
-
-                  <td class="px-4 py-4">
-                    <span class="px-2.5 py-1 rounded-full bg-orange-50 text-orange-600 text-[10px] font-bold">
-                      Review
-                    </span>
-                  </td>
-                </tr>
-
-
-                <tr class="border-b border-slate-100 hover:bg-slate-50">
-                  <td class="px-6 py-4">
-                    <div class="flex items-center gap-3">
-                      <div class="w-9 h-9 rounded-lg bg-cyan-100 text-cyan-600 flex items-center justify-center text-xs font-bold">
-                        RA
-                      </div>
-                      <div>
-                        <p class="text-xs font-semibold text-kf-navy">
-                          Rudi Ahmad
-                        </p>
-                        <p class="text-[10px] text-slate-400">
-                          KF-003451 • Production Staff
-                        </p>
-                      </div>
-                    </div>
-                  </td>
-
-                  <td class="px-4 py-4 text-xs text-slate-500">
-                    Plant
-                  </td>
-
-                  <td class="px-4 py-4">
-                    <p class="text-xs font-semibold text-kf-navy">
-                      Rp 8.750.250
-                    </p>
-                  </td>
-
-                  <td class="px-4 py-4">
-                    <span class="px-2.5 py-1 rounded-full bg-blue-50 text-blue-600 text-[10px] font-bold">
-                      Processing
-                    </span>
-                  </td>
-                </tr>
-
-              </tbody>
-
-            </table>
-
-          </div>
-
-        </div>
-
-
-        <!-- Activity -->
-        <div class="bg-white border border-slate-200 rounded-2xl shadow-soft">
-
-          <div class="p-6 border-b border-slate-100 flex items-center justify-between">
             <div>
-              <h3 class="font-bold text-kf-navy">Aktivitas Terbaru</h3>
-              <p class="text-xs text-slate-400 mt-1">Aktivitas sistem terakhir</p>
+                <h5 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">PERUSAHAAN</h5>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="{{ url('/tentang') }}" class="hover:text-white transition">Tentang Kami</a></li>
+                    <li><a href="#" class="hover:text-white transition">Karir</a></li>
+                    <li><a href="#" class="hover:text-white transition">Berita</a></li>
+                    <li><a href="{{ url('/kontak') }}" class="hover:text-white transition">Kontak</a></li>
+                </ul>
             </div>
 
-            <button class="w-8 h-8 rounded-lg hover:bg-slate-50 flex items-center justify-center">
-              <i data-lucide="more-horizontal" class="w-4 text-slate-500"></i>
-            </button>
-          </div>
-
-
-          <div class="p-6 space-y-6">
-
-            <div class="flex gap-3">
-
-              <div class="w-9 h-9 rounded-full bg-emerald-50 flex items-center justify-center flex-shrink-0">
-                <i data-lucide="check" class="w-4 text-emerald-600"></i>
-              </div>
-
-              <div>
-                <p class="text-xs text-slate-700">
-                  Payroll <b>Apotek KF 012</b> telah disetujui.
-                </p>
-
-                <p class="text-[10px] text-slate-400 mt-1">
-                  8 menit yang lalu
-                </p>
-              </div>
-
+            <div>
+                <h5 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">HUBUNGI KAMI</h5>
+                <ul class="space-y-2 text-xs">
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-location-dot mt-0.5"></i> Jl. Veteran No. 9 Jakarta Pusat 10110</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-envelope"></i> payroll@kimiafarma.co.id</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-phone"></i> (021) 384 7709</li>
+                </ul>
             </div>
-
-
-            <div class="flex gap-3">
-
-              <div class="w-9 h-9 rounded-full bg-orange-50 flex items-center justify-center flex-shrink-0">
-                <i data-lucide="clock-3" class="w-4 text-orange-500"></i>
-              </div>
-
-              <div>
-                <p class="text-xs text-slate-700">
-                  <b>24 pengajuan lembur</b> menunggu approval.
-                </p>
-
-                <p class="text-[10px] text-slate-400 mt-1">
-                  21 menit yang lalu
-                </p>
-              </div>
-
-            </div>
-
-
-            <div class="flex gap-3">
-
-              <div class="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0">
-                <i data-lucide="upload" class="w-4 text-blue-600"></i>
-              </div>
-
-              <div>
-                <p class="text-xs text-slate-700">
-                  File transfer <b>BNI Agustus 2026</b> berhasil dibuat.
-                </p>
-
-                <p class="text-[10px] text-slate-400 mt-1">
-                  42 menit yang lalu
-                </p>
-              </div>
-
-            </div>
-
-
-            <div class="flex gap-3">
-
-              <div class="w-9 h-9 rounded-full bg-purple-50 flex items-center justify-center flex-shrink-0">
-                <i data-lucide="file-edit" class="w-4 text-purple-600"></i>
-              </div>
-
-              <div>
-                <p class="text-xs text-slate-700">
-                  Komponen <b>Tunjangan Shift</b> diperbarui.
-                </p>
-
-                <p class="text-[10px] text-slate-400 mt-1">
-                  1 jam yang lalu
-                </p>
-              </div>
-
-            </div>
-
-
-            <div class="flex gap-3">
-
-              <div class="w-9 h-9 rounded-full bg-red-50 flex items-center justify-center flex-shrink-0">
-                <i data-lucide="alert-triangle" class="w-4 text-red-500"></i>
-              </div>
-
-              <div>
-                <p class="text-xs text-slate-700">
-                  <b>3 data rekening</b> membutuhkan validasi.
-                </p>
-
-                <p class="text-[10px] text-slate-400 mt-1">
-                  2 jam yang lalu
-                </p>
-              </div>
-
-            </div>
-
-          </div>
-
         </div>
 
-      </section>
-
-
-      <!-- QUICK ACTION -->
-      <section class="mt-6">
-
-        <div class="bg-gradient-to-r from-[#003B73] to-[#005BBB] rounded-2xl p-6 text-white flex flex-col md:flex-row md:items-center justify-between gap-5 overflow-hidden relative">
-
-          <div class="relative z-10">
-
-            <div class="flex items-center gap-2 mb-2">
-              <span class="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center">
-                <i data-lucide="zap" class="w-4"></i>
-              </span>
-
-              <span class="text-xs text-blue-100 font-medium">
-                Quick Action
-              </span>
-            </div>
-
-            <h3 class="text-xl font-bold">
-              Payroll Agustus hampir selesai
-            </h3>
-
-            <p class="text-sm text-blue-100 mt-1">
-              173 transaksi masih membutuhkan review sebelum proses transfer.
-            </p>
-
-          </div>
-
-
-          <div class="relative z-10 flex gap-3">
-
-            <button class="bg-white text-kf-navy px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-blue-50">
-              Review Sekarang
-            </button>
-
-            <button class="border border-white/30 px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-white/10">
-              Lihat Laporan
-            </button>
-
-          </div>
-
-
-          <div class="absolute right-10 top-[-80px] w-64 h-64 bg-cyan-400/20 rounded-full blur-2xl"></div>
-
+        <div class="max-w-7xl mx-auto px-6 border-t border-slate-800/80 mt-10 pt-6 text-center text-xs text-slate-400">
+            © 2026 PT Kimia Farma Tbk. Hak cipta dilindungi undang-undang.
         </div>
+    </footer>
 
-      </section>
+    <!-- Scripts JS -->
+    <script type="text/javascript">
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
 
-      <!-- FOOTER -->
-      <footer class="mt-8 pb-4 flex items-center justify-between text-[11px] text-slate-400">
-        <span>© 2026 PT Kimia Farma Tbk. Payroll & HRIS</span>
-        <div class="flex gap-5">
-          <span>Privacy</span>
-          <span>Security</span>
-          <span>Help Center</span>
-        </div>
-      </footer>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'id',
+                includedLanguages: 'id,en',
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
 
-    </div>
-  </main>
-</div>
-
-
-<script>
-  lucide.createIcons();
-
-  // Payroll Trend
-  const payrollCtx = document.getElementById('payrollChart');
-
-  new Chart(payrollCtx, {
-    type: 'line',
-    data: {
-      labels: [
-        'Sep','Okt','Nov','Des','Jan','Feb',
-        'Mar','Apr','Mei','Jun','Jul','Agu'
-      ],
-      datasets: [{
-        label: 'Payroll',
-        data: [
-          22.5, 23.1, 24.8, 24.1,
-          25.7, 26.4, 27.1, 26.5,
-          27.8, 27.2, 28.1, 28.7
-        ],
-        borderColor: '#005BBB',
-        backgroundColor: 'rgba(0,91,187,.08)',
-        borderWidth: 2.5,
-        fill: true,
-        tension: .4,
-        pointRadius: 3,
-        pointBackgroundColor: '#fff',
-        pointBorderColor: '#005BBB',
-        pointBorderWidth: 2
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          display: false
-        },
-        tooltip: {
-          backgroundColor: '#003B73',
-          padding: 12,
-          displayColors: false,
-          callbacks: {
-            label: function(context) {
-              return ' Rp ' + context.raw + ' M';
+        function changeLanguage(lang) {
+            const select = document.querySelector('.goog-te-combo');
+            if (select) {
+                select.value = lang;
+                select.dispatchEvent(new Event('change'));
             }
-          }
-        }
-      },
-      scales: {
-        y: {
-          border: { display: false },
-          grid: {
-            color: '#eef2f7'
-          },
-          ticks: {
-            color: '#94a3b8',
-            font: { size: 10 },
-            callback: function(value) {
-              return value + ' M';
+
+            const btnId = document.getElementById('btn-id');
+            const btnEn = document.getElementById('btn-en');
+
+            if (lang === 'id') {
+                btnId.className = "hover:text-kf-blue transition text-kf-navy font-bold";
+                btnEn.className = "hover:text-kf-blue transition font-normal";
+            } else {
+                btnEn.className = "hover:text-kf-blue transition text-kf-navy font-bold";
+                btnId.className = "hover:text-kf-blue transition font-normal";
             }
-          }
-        },
-        x: {
-          border: { display: false },
-          grid: {
-            display: false
-          },
-          ticks: {
-            color: '#94a3b8',
-            font: { size: 10 }
-          }
         }
-      }
-    }
-  });
+    </script>
 
-
-  // Donut
-  const donutCtx = document.getElementById('donutChart');
-
-  new Chart(donutCtx, {
-    type: 'doughnut',
-    data: {
-      labels: [
-        'Gaji Pokok',
-        'Tunjangan',
-        'Overtime',
-        'Bonus',
-        'Lainnya'
-      ],
-      datasets: [{
-        data: [54.2, 22.7, 11.3, 7.8, 4],
-        backgroundColor: [
-          '#2563EB',
-          '#06B6D4',
-          '#F97316',
-          '#8B5CF6',
-          '#CBD5E1'
-        ],
-        borderWidth: 0,
-        hoverOffset: 5
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      cutout: '70%',
-      plugins: {
-        legend: {
-          display: false
-        }
-      }
-    }
-  });
-</script>
+    <!-- Script Google Translate -->
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 </html>
